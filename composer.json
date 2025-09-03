@@ -1,5 +1,5 @@
 {
-    "name": "netsells/hash-model-ids",
+    "name": "yourparkingspace/hash-model-ids",
     "description": "Dynamically create a hash of an Eloquent model id value to avoid exposing a record's actual database id.",
     "type": "library",
     "license": "MIT",
@@ -24,13 +24,13 @@
     "require": {
         "php": "^8.2",
         "hashids/hashids": "^5.0",
-        "illuminate/contracts": "^10.0|^11.0",
-        "illuminate/database": "^10.0|^11.0",
-        "illuminate/support": "^10.0|^11.0",
-        "illuminate/validation": "^10.0|^11.0"
+        "illuminate/contracts": "^v12.27.1",
+        "illuminate/database": "^v12.27.1",
+        "illuminate/support": "^v12.27.1",
+        "illuminate/validation": "^v12.27.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^8.0|^9.0"
+        "orchestra/testbench": "^v10.6.0"
     },
     "autoload": {
         "psr-4": {
