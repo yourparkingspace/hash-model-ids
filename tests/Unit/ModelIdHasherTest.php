@@ -37,11 +37,8 @@ class ModelIdHasherTest extends TestCase
     {
         $idHasher = $this->getNewModelIdHasher();
 
-        /** @var \Illuminate\Database\Eloquent\Model|\PHPUnit\Framework\MockObject\MockObject $foo */
-        $foo = $this->createMock(Models\Foo::class);
-
-        /** @var \Illuminate\Database\Eloquent\Model|\PHPUnit\Framework\MockObject\MockObject $bar */
-        $bar = $this->createMock(Models\Bar::class);
+        $foo = $this->createStub(Models\Foo::class);
+        $bar = $this->createStub(Models\Bar::class);
 
         $this->assertNotSame($idHasher->encode($foo, 1), $idHasher->encode($bar, 1));
     }
