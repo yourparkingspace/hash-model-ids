@@ -24,13 +24,13 @@
     "require": {
         "php": "^8.2",
         "hashids/hashids": "^5.0",
-        "illuminate/contracts": "^v12.27.1",
-        "illuminate/database": "^v12.27.1",
-        "illuminate/support": "^v12.27.1",
-        "illuminate/validation": "^v12.27.0"
+        "illuminate/contracts": "^12.0|^13.0",
+        "illuminate/database": "^12.0|^13.0",
+        "illuminate/support": "^12.0|^13.0",
+        "illuminate/validation": "^12.0|^13.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^v10.6.0"
+        "orchestra/testbench": "^10.0|^11.0"
     },
     "autoload": {
         "psr-4": {
