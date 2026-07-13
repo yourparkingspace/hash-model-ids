@@ -1,12 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netsells\HashModelIds;
 
 use Illuminate\Database\Eloquent\Model;
 
 interface ModelIdHasherInterface
 {
-    public function encode(Model $model, $id): string;
+    /**
+     * @param class-string<Model>|Model $model
+     */
+    public function encode(string|Model $model, $id): string;
 
-    public function decode(Model $model, $hash): string;
+    /**
+     * @param class-string<Model>|Model $model
+     */
+    public function decode(string|Model $model, $hash): string;
 }
