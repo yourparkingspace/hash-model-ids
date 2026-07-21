@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netsells\HashModelIds;
 
 use Hashids\Hashids;
@@ -21,19 +23,32 @@ class ModelIdHasher implements ModelIdHasherInterface
         $this->config = $config;
     }
 
-    public function encode(Model $model, $id): string
+    /**
+     * @param class-string<Model>|Model $model
+     */
+    public function encode(string|Model $model, $id): string
     {
         return $this->getInstance($model)->encode($id);
     }
 
-    public function decode(Model $model, $hash): string
+    /**
+     * @param class-string<Model>|Model $model
+     */
+    public function decode(string|Model $model, $hash): string
     {
         return implode('', $this->getInstance($model)->decode($hash));
     }
 
-    private function getInstance(Model $model): Hashids
+    /**
+     * @param class-string<Model>|Model $model
+     */
+    private function getInstance(string|Model $model): Hashids
     {
-        $class = $model::class;
+        $class = is_string($model) ? $model : $model::class;
+
+        if (! is_a($class, Model::class, true)) {
+            throw new InvalidArgumentException('The given class must be an instance of '.Model::class);
+        }
 
         if (! isset($this->instances[$class])) {
             $this->instances[$class] = $this->getNewInstance($class);

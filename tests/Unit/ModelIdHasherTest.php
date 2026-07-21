@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netsells\HashModelIds\Tests\Unit;
 
 use InvalidArgumentException;
@@ -41,6 +43,27 @@ class ModelIdHasherTest extends TestCase
         $bar = $this->createStub(Models\Bar::class);
 
         $this->assertNotSame($idHasher->encode($foo, 1), $idHasher->encode($bar, 1));
+    }
+
+    public function testHasherCanEncodeAndDecodeUsingClassString(): void
+    {
+        $idHasher = $this->getNewModelIdHasher();
+
+        $hash = $idHasher->encode(Models\Foo::class, 1);
+
+        $this->assertEquals(1, $idHasher->decode(Models\Foo::class, $hash));
+    }
+
+    public function testEncodingWithClassStringMatchesEncodingWithInstance(): void
+    {
+        $idHasher = $this->getNewModelIdHasher();
+
+        $model = new Models\Foo();
+
+        $this->assertSame(
+            $idHasher->encode($model, 1),
+            $idHasher->encode(Models\Foo::class, 1)
+        );
     }
 
     private function getNewModelIdHasher(array $config = self::CONFIG): ModelIdHasher
