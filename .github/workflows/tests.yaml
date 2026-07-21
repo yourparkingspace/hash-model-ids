@@ -30,7 +30,7 @@ jobs:
       - name: Ensure we use specific version of Laravel, and install other dependencies
         env:
           LARAVEL_VERSION: ${{ matrix.laravel }}
-        run: composer require laravel/framework $LARAVEL_VERSION --no-interaction --no-scripts --prefer-dist
+        run: composer require laravel/framework $LARAVEL_VERSION --no-interaction --no-scripts --prefer-dist --with-all-dependencies
 
       - name: Execute tests
         run: vendor/bin/phpunit
